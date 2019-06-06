@@ -62,6 +62,7 @@ udp_rx_callback(struct simple_udp_connection *c,
          uint16_t datalen)
 {
   uint16_t tempdata;
+  uint8_t hops;
 
   LOG_INFO("Received request '%u' ", datalen);
   LOG_INFO("from ");
@@ -69,15 +70,26 @@ udp_rx_callback(struct simple_udp_connection *c,
   LOG_INFO_("\n");
 
   printf("%u ", datalen);
-  printf("%04x ", sender_addr->u8[14] + (sender_addr->u8[15] << 8));
+  printf("%02x%02x ", sender_addr->u8[14],sender_addr->u8[15]);
 
+  hops = uip_ds6_if.cur_hop_limit - UIP_IP_BUF->ttl + 1;
+  printf("%d ", hops);
 
-  for(int i=0; i<(uip_datalen()-2)/2; i++)
+  memcpy(&tempdata , data, sizeof(uint16_t));
+  data+=sizeof(uint16_t);
+  printf("%u ",tempdata);
+
+  memcpy(&tempdata , data, sizeof(uint16_t));
+  data+=sizeof(uint16_t);
+  printf("%x ",tempdata);
+
+  for(int i=0; i<(datalen/2)-2; i++)
   {
     memcpy(&tempdata , data, sizeof(uint16_t));
     data+=sizeof(uint16_t);
     printf("%u ",tempdata);
   }
+  printf("\n");
 
 #if WITH_SERVER_REPLY
   /* send back the same string to the client as an echo reply */

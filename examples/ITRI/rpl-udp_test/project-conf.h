@@ -53,7 +53,7 @@
 #define TSCH_JOIN_MY_PANID_ONLY 1
 
 #define DOT_15_4G_CONF_FREQUENCY_BAND_ID DOT_15_4G_FREQUENCY_BAND_915
-#define TSCH_CONF_DEFAULT_HOPPING_SEQUENCE (uint8_t[]){ 12, 16, 20, 24 }
+#define TSCH_CONF_DEFAULT_HOPPING_SEQUENCE (uint8_t[]){ 40, 44, 48, 52}
 
 /* Do not start TSCH at init, wait for NETSTACK_MAC.on() */
 #define TSCH_CONF_AUTOSTART 0
@@ -74,15 +74,15 @@
 /*******************************************************/
 
 /* Logging */
-#define LOG_CONF_LEVEL_RPL                         LOG_LEVEL_DBG
-#define LOG_CONF_LEVEL_TCPIP                       LOG_LEVEL_DBG
+#define LOG_CONF_LEVEL_RPL                         LOG_LEVEL_NONE
+#define LOG_CONF_LEVEL_TCPIP                       LOG_LEVEL_NONE
 //#define LOG_CONF_LEVEL_TCPIP                       LOG_LEVEL_WARN
-#define LOG_CONF_LEVEL_IPV6                        LOG_LEVEL_DBG
+#define LOG_CONF_LEVEL_IPV6                        LOG_LEVEL_NONE
 //#define LOG_CONF_LEVEL_IPV6                        LOG_LEVEL_WARN
-#define LOG_CONF_LEVEL_6LOWPAN                     LOG_LEVEL_DBG
+#define LOG_CONF_LEVEL_6LOWPAN                     LOG_LEVEL_NONE
 //#define LOG_CONF_LEVEL_6LOWPAN                     LOG_LEVEL_WARN
-#define LOG_CONF_LEVEL_MAC                         LOG_LEVEL_DBG
-#define LOG_CONF_LEVEL_FRAMER                      LOG_LEVEL_DBG
+#define LOG_CONF_LEVEL_MAC                         LOG_LEVEL_NONE
+#define LOG_CONF_LEVEL_FRAMER                      LOG_LEVEL_NONE
 //#define LOG_CONF_LEVEL_FRAMER                      LOG_LEVEL_DBG
 #define TSCH_LOG_CONF_PER_SLOT                     0
 
